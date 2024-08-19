@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const AddListingForm: React.FC = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState<number | undefined>(undefined);
+  const [location, setLocation] = useState('');
+  const [rating, setRating] = useState<number | undefined>(undefined);
+  const [images, setImages] = useState<FileList | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setImages(event.target.files);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price?.toString() || '');
+    formData.append('location', location);
+    formData.append('rating', rating?.toString() || '');
+    
+    if (images) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append('images', images[i]);
+      }
+    }
+
+    try {
+      await axios.post('/api/listings', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      setSuccess('Listing added successfully');
+      setTitle('');
+      setDescription('');
+      setPrice(undefined);
+      setLocation('');
+      setRating(undefined);
+      setImages(null);
+    } catch (error) {
+      setError('Error adding listing. Please try again.');
+      console.error('Error adding listing:', error);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-6 py-8">
+      <h1 className="text-2xl font-semibold mb-6">Add a New Listing</h1>
+      {error && <p className="text-red-500">{error}</p>}
+      {success && <p className="text-green-500">{success}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700">Title:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Description:</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Location:</label>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Price:</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(parseFloat(e.target.value))}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Rating:</label>
+          <input
+            type="number"
+            value={rating}
+            onChange={(e) => setRating(parseFloat(e.target.value))}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Images:</label>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            multiple
+            accept="image/*"
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+        </div>
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+          Add Listing
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default AddListingForm;
