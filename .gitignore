@@ -24,3 +24,6 @@ yarn-error.log*
 
 # env vars
 .env
+
+# cache files
+*__pycache__
