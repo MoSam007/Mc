@@ -18,7 +18,7 @@ const listings: Listing[] = [
     id: 1,
     title: 'MiCasa Appartments',
     location: 'Nairobi, Kenya',
-    price: 'KSh 2,546 per night',
+    price: 'KSh 12,546 per month',
     rating: 5.0,
     imageUrl: image1,
     description: 'Sweet home'
