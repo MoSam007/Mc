@@ -1,0 +1,21 @@
+[
+    {
+      "title": "Micasa Apartments1",
+      "description": "Spacious 2 bedroom house",
+      "location": "Kasarani, Nairobi",
+      "amenities": "2 baths, 2bedrooms, hot shower, gym, parking space",
+      "price": "Ksh 12000 pm",
+      "rating": "5.0",
+      "imageUrls": ""
+    },
+    {
+        "title": "Ridge Apartments",
+        "description": "Luxurious modern 3 bedroom house",
+        "location": "Kasarani, Nairobi",
+        "amenities": "2 baths, 3bedrooms, patio, hot shower, gym, kids playground, parking space",
+        "price": "Ksh 18000 pm",
+        "rating": "5.0",
+        "imageUrls": ""
+    }
+  ]
+  
