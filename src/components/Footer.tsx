@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
-// import logo from '../images/Logo.png'; // Update the path as per your project structure
+// import logo from '../images/Logo.png'; 
 
 const Footer: React.FC = () => (
-  <footer className="bg-gray-950 text-gray-600 py-8 w-full">
+  <footer className="bg-gray-200 text-gray-600 py-8 w-full">
     <div className="container mx-auto px-4 flex flex-wrap justify-between items-start">
       {/* Logo and Creator Section */}
       <div className="w-full sm:w-1/2 md:w-1/4 mb-4 sm:mb-0 text-center sm:text-left">
