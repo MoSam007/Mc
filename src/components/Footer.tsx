@@ -1,13 +1,13 @@
 import React from 'react';
 import { FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
-// import logo from '../images/Logo.png'; 
+import logo from '../images/MiCasa.png'; 
 
 const Footer: React.FC = () => (
   <footer className="bg-gray-200 text-gray-600 py-8 w-full">
     <div className="container mx-auto px-4 flex flex-wrap justify-between items-start">
       {/* Logo and Creator Section */}
       <div className="w-full sm:w-1/2 md:w-1/4 mb-4 sm:mb-0 text-center sm:text-left">
-        {/* <img src={logo} alt="ToursCo Logo" className="h-16 mb-2 mx-auto sm:mx-0" /> */}
+        {<img src={logo} alt="MiCasa Logo" className="h-16 mb-2 mx-auto sm:mx-0" /> }
         <h2 className="font-bold text-xl text-primary mb-2">MiCasa</h2>
         <p>&copy; 2024 Micasa. All rights reserved.</p>
         <p>Created by <a href="mailto:samato.moma@gmail.com" className="underline hover:text-primary">samato.moma@gmail.com</a></p>
@@ -27,9 +27,8 @@ const Footer: React.FC = () => (
       {/* Working Hours Section */}
       <div className="w-full sm:w-1/2 md:w-1/4 mb-4 sm:mb-0 text-center sm:text-left">
         <h3 className="font-bold mb-2">Working Hours</h3>
-        <p>Mon - Fri: 8am - 8pm</p>
-        <p>Saturday: 9am - 7pm</p>
-        <p>Sunday: 9am - 8pm</p>
+        <p>Mon - Fri: 8am - 6pm</p>
+        <p>Saturday: 9am - 1pm</p>
       </div>
       {/* Resources Section */}
       <div className="w-full sm:w-1/2 md:w-1/4 text-center sm:text-left">
