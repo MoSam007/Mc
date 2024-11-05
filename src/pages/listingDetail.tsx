@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface IListing {
-  _id: string;
   title: string;
   location: string;
   price: string;
@@ -17,7 +16,7 @@ const ListingDetail: React.FC = () => {
   const [listing, setListing] = useState<IListing | null>(null);
 
   useEffect(() => {
-    fetch(`http://locdalhost:5000/api/listings/${id}`)
+    fetch(`http://localhost:5000/api/listings/${id}`)
       .then((response) => response.json())
       .then((data) => setListing(data))
       .catch((error) => console.error('Error fetching listing:', error));
@@ -26,6 +25,8 @@ const ListingDetail: React.FC = () => {
   if (!listing) {
     return <div>Listing not found</div>;
   }
+  
+  const backendUrl = "http://localhost:5000";
 
   return (
     <div className="container mx-auto px-6 py-8">
@@ -34,12 +35,12 @@ const ListingDetail: React.FC = () => {
           {/* Ensure imageUrls exists before mapping */}
           {listing.imageUrls && listing.imageUrls.length > 0 ? (
             listing.imageUrls.map((url, index) => (
-              <img 
-                key={index} 
-                src={`http://localhost:5000/${url}`} 
-                alt={listing.title} 
-                className="w-full h-80 object-cover rounded-lg mb-4" 
-              />
+            <img
+              src={`${backendUrl}/uploads/${listing.imageUrls}`}  // Construct full URL
+              alt={listing.title}
+              className="w-full h-48 object-cover"
+              style={{ height: '300px', width: '100%', objectFit: 'cover' }}
+            />
             ))
           ) : (
             <p>No images available</p>

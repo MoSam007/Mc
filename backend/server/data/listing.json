@@ -1,21 +1,38 @@
 [
-    {
-      "title": "Micasa Apartments1",
-      "description": "Spacious 2 bedroom house",
-      "location": "Kasarani, Nairobi",
-      "amenities": "2 baths, 2bedrooms, hot shower, gym, parking space",
-      "price": "Ksh 12000 pm",
-      "rating": "5.0",
-      "imageUrls": ""
-    },
-    {
-        "title": "Ridge Apartments",
-        "description": "Luxurious modern 3 bedroom house",
-        "location": "Kasarani, Nairobi",
-        "amenities": "2 baths, 3bedrooms, patio, hot shower, gym, kids playground, parking space",
-        "price": "Ksh 18000 pm",
-        "rating": "5.0",
-        "imageUrls": ""
-    }
-  ]
-  
+  {
+    "title": "Micasa Apartments1",
+    "description": "Spacious 2 bedroom house",
+    "location": "Kasarani, Nairobi",
+    "amenities": "2 baths, 2 bedrooms, hot shower, gym, parking space",
+    "price": "Ksh 12000 pm",
+    "rating": "5.0",
+    "imageUrls": ["/uploads/alexander-andrews-A3DPhhAL6Zg-unsplash.jpg"]
+  },
+  {
+    "title": "Ridge Apartments",
+    "description": "Luxurious modern 3 bedroom house",
+    "location": "Kasarani, Nairobi",
+    "amenities": "2 baths, 3 bedrooms, patio, hot shower, gym, kids playground, parking space",
+    "price": "Ksh 18000 pm",
+    "rating": "5.0",
+    "imageUrls": ["/uploads/atico-G2g6zuM8Hkk-unsplash.jpg"]
+  },
+  {
+    "title": "Highway Complex",
+    "description": "Luxurious modern 3 bedroom house",
+    "location": "Safari Park, Nairobi",
+    "amenities": "2 baths, 3 bedrooms, spacious balcony, hot shower, gym, kids playground, parking space, laundry room",
+    "price": "Ksh 20000 pm",
+    "rating": "5.0",
+    "imageUrls": ["/uploads/atico-XFjTyq89lZs-unsplash.jpg"]
+  },
+  {
+    "title": "Grand Heights Apartments",
+    "description": "Beautiful Apartments",
+    "location": "Seasons Kasarani Mwiki RD, Nairobi",
+    "amenities": "2 baths, 2 bedrooms, hot shower, balcony, gym, parking space",
+    "price": "Ksh 15000 pm",
+    "rating": "4.5",
+    "imageUrls": ["/uploads/atico-G2g6zuM8Hkk-unsplash.jpg"]
+  }
+]
