@@ -1,6 +1,10 @@
 import mongoose, { Document } from 'mongoose';
 
 const listingSchema = new mongoose.Schema({
+  l_id:{
+    type: Number,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -11,7 +15,7 @@ const listingSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: String,
@@ -29,9 +33,14 @@ const listingSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  likes:{
+    type: Number,
+    required: false,
+  }
 });
 
 export interface IListing extends Document {
+  l_id: number;
   title: string;
   location: string;
   description: string;
@@ -39,6 +48,7 @@ export interface IListing extends Document {
   rating: number;
   imageUrls: string[];
   amenities: string[];
+  likes: number;
 }
 
 const Listing = mongoose.model<IListing>('Listing', listingSchema);
