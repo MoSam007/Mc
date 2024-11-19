@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaMapMarkerAlt, FaBed, FaDollarSign, FaSearch } from 'react-icons/fa';
-import Autocomplete from 'react-google-autocomplete'; // Google Places Autocomplete
+import Autocomplete from 'react-google-autocomplete'; // Install this package for Google Places Autocomplete
 
 const Filters: React.FC = () => {
   const [location, setLocation] = useState<string>('');
@@ -16,29 +16,28 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <div className="w-auto flex flex-col mx-auto items-center px-10 py-28 space-y-6 bg-white shadow-sm rounded-lg">
+    <div className="w-screen flex flex-col mx-auto px-10 py-24 space-y-6 items-center bg-white shadow-sm rounded-lg">
       
       {/* Google Places Autocomplete Search Bar */}
-      <div className="flex items-center justify-between w-full max-w-4xl bg-gray-100 rounded-full p-3 shadow-sm space-y-2 ">
+      <div className="flex  items-center w-full max-w-4xl bg-gray-100 rounded-full p-3 shadow-lg">
         <Autocomplete
-          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} // Replace with your Google API key
+          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} // Make sure to replace with your Google API key
           onPlaceSelected={handlePlaceSelected}
-          types={['(cities)']}
+          types={['(regions)']} // You can adjust types based on your need (e.g., cities, addresses, etc.)
           className="flex-grow bg-transparent focus:outline-none text-gray-700 px-4"
-          placeholder="Where are you going?"
+          placeholder="Find a dream home?"
         />
-        <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full">
+        <button className="bg-primary hover:bg-amber-500 text-white p-2 rounded-full">
           <FaSearch className="h-5 w-5" />
         </button>
       </div>
 
       {/* Filter Section */}
-      <div className="flex flex-wrap justify-between items-center space-y-4 md:space-y-0 space-x-0 md:space-x-6 bg-white py-2 px-6 shadow-lg rounded-md">
-        
+      <div className="flex items-center justify-between space-x-6 bg-white py-2 px-10 shadow-lg rounded-full">
         {/* Rent Filter */}
-        <div className="flex items-center space-x-2 w-full md:w-auto">
+        <div className="flex items-center space-x-2">
           <FaDollarSign className="text-gray-500" />
-          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer w-full md:w-auto">
+          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer">
             <option value="">Rent</option>
             <option value="low">Low to High</option>
             <option value="high">High to Low</option>
@@ -46,9 +45,9 @@ const Filters: React.FC = () => {
         </div>
 
         {/* Location Filter */}
-        <div className="flex items-center space-x-2 w-full md:w-auto">
+        <div className="flex items-center space-x-2">
           <FaMapMarkerAlt className="text-gray-500" />
-          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer w-full md:w-auto">
+          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer">
             <option value="">Location</option>
             <option value="location1">Location 1</option>
             <option value="location2">Location 2</option>
@@ -56,9 +55,9 @@ const Filters: React.FC = () => {
         </div>
 
         {/* Bedrooms Filter */}
-        <div className="flex items-center space-x-2 w-full md:w-auto">
+        <div className="flex items-center space-x-2">
           <FaBed className="text-gray-500" />
-          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer w-full md:w-auto">
+          <select className="border-0 bg-transparent focus:outline-none text-gray-700 cursor-pointer">
             <option value="">Bedrooms</option>
             <option value="studio">Studio Apartment</option>
             <option value="bedsitter">Bedsitter</option>
@@ -69,7 +68,7 @@ const Filters: React.FC = () => {
         </div>
 
         {/* Filters Button */}
-        <button className="flex items-center w-full md:w-auto px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 focus:outline-none">
+        <button className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 focus:outline-none">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 012 0v.75M3 8.5a1 1 0 012 0v.75M3 13a1 1 0 012 0v.75M7 4h12m-12 4.5h12m-12 4.5h12m-12 4.5h12M3 17.5a1 1 0 012 0v.75" />
           </svg>

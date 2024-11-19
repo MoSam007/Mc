@@ -43,10 +43,10 @@ const Navigation: React.FC = () => {
   }, [lastScrollY]);
 
   return (
-    <nav className={`fixed mx-auto w-full top-0 z-50 transition-all duration-300 ${scrollDirection === 'down' && !isNavVisible ? 'opacity-0' : 'opacity-100'} ${lastScrollY === 0 ? 'bg-gray-950 bg-opacity-100 shadow-md' : isScrollingUp ? 'bg-gray-950 bg-opacity-75' : 'bg-gray-950 bg-opacity-60'}`}>
-      <div className="container mx-auto py-8 px-8 flex justify-between items-center">
+    <nav className={`fixed mx-auto w-full top-0 z-50 transition-all duration-300 ${scrollDirection === 'down' && !isNavVisible ? 'opacity-0' : 'opacity-100'} ${lastScrollY === 0 ? 'bg-white bg-opacity-100 shadow-none' : isScrollingUp ? 'bg-gray-200 bg-opacity-75' : 'bg-gray-200 bg-opacity-60'}`}>
+      <div className="container mx-auto py-4 px-8 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          { <img src={Logo} alt="ToursCo Logo" className="h-12 mb-2 mx-auto sm:mx-0 shadow-lg" /> }
+          { <img src={Logo} alt="MiCasa" className="h-12 mb-2 mx-auto sm:mx-0 shadow-lg" /> }
           <Link to="/" className="text-2xl px-3 font-bold text-primary">
             MiCasa
           </Link>
@@ -61,11 +61,14 @@ const Navigation: React.FC = () => {
           <Link to="/contact" className="text-gray-600 font-medium">
             Contact
           </Link>
-          <Link to="/signin" className="text-gray-600 font-medium">
-            Sign In
+          <Link to="/add-listing" className="text-gray-600 font-medium">
+            AddListing
           </Link>
-          <Link to="/home" className="text-rose-300 font-medium">
+          <Link to="/login" className="text-rose-300 font-medium">
             Log In
+          </Link>
+          <Link to="/admin/listings" className="text-gray-800 font-medium">
+            Admin
           </Link>
         </div>
       </div>
