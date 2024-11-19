@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db';
 import listingRoutes from './routes/listingRoutes';
 import { errorHandler, notFound } from './middleware/errorHandler';
+import path from 'path';
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 app.use('/api/listings', listingRoutes);
 
 // Serve static files (e.g., images)
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Error Handling Middleware
 app.use(notFound);
