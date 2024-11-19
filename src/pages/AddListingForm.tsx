@@ -1,64 +1,63 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const AddListingForm: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState<number | undefined>(undefined);
   const [location, setLocation] = useState('');
-  const [rating, setRating] = useState<number | undefined>(undefined);
-  const [images, setImages] = useState<FileList | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [price, setPrice] = useState<number | ''>('');
+  const [description, setDescription] = useState('');
+  const [rating, setRating] = useState<number | ''>(''); 
+  const [amenities, setAmenities] = useState('');
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setImages(event.target.files);
+  // Define state variables for success and error messages
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImageFiles(Array.from(e.target.files));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
 
     const formData = new FormData();
     formData.append('title', title);
-    formData.append('description', description);
-    formData.append('price', price?.toString() || '');
     formData.append('location', location);
-    formData.append('rating', rating?.toString() || '');
-    
-    if (images) {
-      for (let i = 0; i < images.length; i++) {
-        formData.append('images', images[i]);
-      }
-    }
+    formData.append('price', price.toString());
+    formData.append('description', description);
+    formData.append('rating', rating.toString());
+    formData.append('amenities', amenities); 
+    imageFiles.forEach((file) => formData.append('images', file));
 
     try {
-      await axios.post('/api/listings', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+      const response = await fetch('http://localhost:5000/api/listings', {
+        method: 'POST',
+        body: formData,
       });
-      setSuccess('Listing added successfully');
-      setTitle('');
-      setDescription('');
-      setPrice(undefined);
-      setLocation('');
-      setRating(undefined);
-      setImages(null);
+
+      if (response.ok) {
+        setSuccess(true);
+        setError(''); 
+        alert('Listing added successfully');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Error adding listing');
+        setSuccess(false);
+      }
     } catch (error) {
-      setError('Error adding listing. Please try again.');
-      console.error('Error adding listing:', error);
+      console.error('Error submitting form:', error);
+      setError('An unexpected error occurred');
+      setSuccess(false);
     }
   };
 
   return (
     <div className="container mx-auto px-6 py-8">
       <h1 className="text-2xl font-semibold mb-6">Add a New Listing</h1>
-      {error && <p className="text-red-500">{error}</p>}
-      {success && <p className="text-green-500">{success}</p>}
+      {success && <p className="text-green-600">Listing added successfully!</p>}
+      {error && <p className="text-red-600">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Title:</label>
@@ -94,7 +93,7 @@ const AddListingForm: React.FC = () => {
           <input
             type="number"
             value={price}
-            onChange={(e) => setPrice(parseFloat(e.target.value))}
+            onChange={(e) => setPrice(e.target.value ? parseFloat(e.target.value) : '')}
             className="w-full px-4 py-2 border rounded-lg"
             required
           />
@@ -104,9 +103,19 @@ const AddListingForm: React.FC = () => {
           <input
             type="number"
             value={rating}
-            onChange={(e) => setRating(parseFloat(e.target.value))}
+            onChange={(e) => setRating(e.target.value ? parseFloat(e.target.value) : '')}
             className="w-full px-4 py-2 border rounded-lg"
             required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Amenities:</label>
+          <input
+            type="text"
+            placeholder="Amenities (comma separated)"
+            value={amenities}
+            onChange={(e) => setAmenities(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div className="mb-4">
